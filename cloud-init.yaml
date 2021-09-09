@@ -1,0 +1,24 @@
+#cloud-config
+
+package_update: true
+package_upgrade: true
+package_reboot_if_required: true
+
+groups:
+  - wheel
+
+users:
+  - name: dev
+    lock_passwd: true
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ssh-rsa ...
+    groups: wheel
+    sudo: ALL=(ALL) NOPASSWD:ALL
+
+packages:
+  - curl
+
+runcmd:
+  - mkdir /home/dev/frontend
+  - mkdir /home/dev/backend
