@@ -8,13 +8,8 @@ terraform {
   }
 }
 
-output "TOKEN" {
-  value       = var.do_token
-  description = "token"
-}
 
 provider "digitalocean" {
-  token = var.do_token
 }
 
 resource "digitalocean_droplet" "web" {
