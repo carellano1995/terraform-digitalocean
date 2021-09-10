@@ -7,3 +7,8 @@ output "price_hourly" {
   value       = digitalocean_droplet.web.price_hourly
   description = "price hourly"
 }
+
+output "region" {
+  value       = digitalocean_droplet.web.region
+  description = "region"
+}
