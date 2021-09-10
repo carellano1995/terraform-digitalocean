@@ -8,3 +8,5 @@ variable "region" {
 variable "size" {
   default = "s-1vcpu-1gb"
 }
+
+variable "do_token" {}
