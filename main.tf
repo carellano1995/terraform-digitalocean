@@ -1,5 +1,4 @@
 
-
 terraform {
   required_providers {
     digitalocean = {
@@ -8,8 +7,13 @@ terraform {
   }
 }
 
+output "TOKEN" {
+  value       = var.do_token
+  description = "region"
+}
 
 provider "digitalocean" {
+  token = var.do_token
 }
 
 resource "digitalocean_droplet" "web" {
