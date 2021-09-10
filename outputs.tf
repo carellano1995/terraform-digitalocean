@@ -4,6 +4,6 @@ output "ip_address" {
 }
 
 output "price_hourly" {
-  value = digitalocean_droplet.web.price_hourly
+  value       = digitalocean_droplet.web.price_hourly
   description = "price hourly"
 }
