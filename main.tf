@@ -17,7 +17,7 @@ resource "digitalocean_droplet" "web" {
   region    = var.region
   size      = var.size
   user_data = file("cloud-init.yaml")
-  ssh_keys = ["${digitalocean_ssh_key.terra.fingerprint}"
+  ssh_keys = ["${digitalocean_ssh_key.carellanoSSH.fingerprint}"
   ]
 
 }
