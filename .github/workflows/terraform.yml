@@ -85,6 +85,7 @@ jobs:
         run: terraform plan
         env:
           TF_VAR_do_token: ${{ secrets.TF_VAR_DO_TOKEN }}
+          TF_VAR_ssh_key: ${{ secrets.TF_VAR_SSH_KEY }}
 
         # On push to main, build or change infrastructure according to Terraform configuration files
         # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
@@ -93,3 +94,4 @@ jobs:
         run: terraform apply -auto-approve
         env:
           TF_VAR_do_token: ${{ secrets.TF_VAR_DO_TOKEN }}
+          TF_VAR_ssh_key: ${{ secrets.TF_VAR_SSH_KEY }}
