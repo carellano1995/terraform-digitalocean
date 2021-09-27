@@ -6,7 +6,7 @@ package_reboot_if_required: true
 
 groups:
   - wheel
-
+disable_root: true
 users:
   - name: ${user}
     lock_passwd: true
@@ -15,10 +15,10 @@ users:
       - ${init_ssh_public_key}
     groups: wheel
     sudo: ALL=(ALL) NOPASSWD:ALL
-write_files:
-  - path: /etc/ssh/sshd_config
-    content: |
-      PermitRootLogin no
+# write_files:
+#   - path: /etc/ssh/sshd_config
+#     content: |
+#       PermitRootLogin no
 
 packages:
   - curl
