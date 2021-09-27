@@ -23,7 +23,7 @@ data "template_file" "cloud-init-yaml" {
 
 resource "digitalocean_droplet" "web" {
   image     = var.image
-  name      = "terraform-droplet"
+  name      = var.name
   region    = var.region
   size      = var.size
   user_data = data.template_file.cloud-init-yaml.rendered
@@ -43,7 +43,6 @@ resource "digitalocean_project" "terraform-test" {
 resource "digitalocean_ssh_key" "carellanoSSH" {
   name       = "carellanoSSH"
   public_key = var.ssh_key
-
 }
 
 

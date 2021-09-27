@@ -2,6 +2,10 @@ variable "image" {
   default = "centos-7-x64"
 }
 
+variable "name" {
+  default = "terraform"
+}
+
 variable "region" {
   default = "nyc1"
 }
