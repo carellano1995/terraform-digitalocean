@@ -11,12 +11,22 @@ provider "digitalocean" {
   token = var.do_token
 }
 
+
+data "template_file" "cloud-init-yaml" {
+  template = file("cloud-init.yaml")
+  vars = {
+    init_ssh_public_key = var.ssh_key
+    user                = "dev"
+  }
+}
+
+
 resource "digitalocean_droplet" "web" {
   image     = var.image
   name      = "terraform-droplet"
   region    = var.region
   size      = var.size
-  user_data = file("cloud-init.yaml")
+  user_data = data.template_file.cloud-init-yaml.rendered
   ssh_keys = ["${digitalocean_ssh_key.carellanoSSH.fingerprint}"
   ]
 
@@ -32,6 +42,8 @@ resource "digitalocean_project" "terraform-test" {
 
 resource "digitalocean_ssh_key" "carellanoSSH" {
   name       = "carellanoSSH"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDA0OI37fIwElQMqZeoymVV+FkG3DbtP3Ch2FuC00DXEr3PYg0dY0McbehukOKRdivcCiIjDKa3iBio0hlE9IXqaes1KaTNsLIncBwfEkgfxh49X1jiVIPDXQWV4zVIeVwAsgS922L7K83OWFHcYMRZnnJ/zqC183+GPvjCmy8zavf0K6yngIn13/5gFtJXhdqORr8jeZXx6cINSY31c6bjFtkBY7gAtTIAkEgJLEzP6Nvi3D45FmeIDvXT5RY1IsIGi9FfEAJE7EzVxhMxYsjhAKsIAetvlh9vQEF6N4tX3bVNgnueEBggiFOP5QII+raGTCl7+H3qHz/dirDOkld1 carellano@Admins-MacBook-Pro.local"
+  public_key = var.ssh_key
+
 }
+
 

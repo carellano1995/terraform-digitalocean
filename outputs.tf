@@ -12,3 +12,7 @@ output "region" {
   value       = digitalocean_droplet.web.region
   description = "region"
 }
+
+output "ssh" {
+  value = var.ssh_key
+}
